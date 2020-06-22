@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Level00</title>
+	<title>Level06</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Level00</a>
+		<a class="navbar-brand" href="#">Level06</a>
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
         		<a class="nav-link" href="../../manuel.html">retour</a>
@@ -15,34 +15,53 @@
 		</ul>
 	</nav>
 	<div align="center">
-		<h1 class="mt-4">Level00</h1>
+		<h1 class="mt-4">Level06</h1>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 1 : </h5>
-			<p class="lead">on lance la progammme</p>
+			<p class="lead">on lance la progammme et il demande un nom puis nous demande un mote de passe</p>
+			<p class="lead">mais si on se connecte avec le meme mot de passe cela ne fonctionne pas</p>
+			<p class="lead">on lance gdb</p>
 			<img src="img/etape1.png" class="mt-4 om">
 		</div>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 2 : </h5>
-			<p class="lead">on lance gdb</p>
-			<p class="lead">on convertit la ligne ou il y a cmp : 0x080484e7 <+83>:	cmp    $0x149c,%eax</p>
-			<p class="lead">on a : 0x149c = 5276</p>
-			<img src="img/etape2.png" class="mt-4 om">
+			<p class="lead">disas le main</p>
+			<p class="lead">on peut voir une fonction auth et un ptrace</p>
+			<img src="img/etape2.0.png" class="mt-4 om">
+			<br>
+			<img src="img/etape2.1.png" class="mt-4 om">
 		</div>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 3 : </h5>
-			<p class="lead">on lance le programme</p>
-			<p class="lead">on met 5276 en mdp</p>
+			<p class="lead">on catch le ptrace et on set eax a 0 car sinon gdb ne fonctionne pas avec</p>
+			<p class="lead">on set un breakpoint a auth+286 (0x08048866 <+286>:	cmp    -0x10(%ebp),%eax)</p>
 			<img src="img/etape3.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 4 : </h5>
+			<p class="lead">au breakpoint ou regarde ou se trouve notre serial, il est dans eax</p>
+			<p class="lead">donc la valeur de notre serial sera dans ebp-0x10</p>
+			<img src="img/etape4.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 5 : </h5>
+			<p class="lead">on se connecte avec le meme identifiant</p>
+			<p class="lead">on met en mote de passe le serail trouve dans ebp</p>
+			<img src="img/etape5.png" class="mt-4 om">
 		</div>
 		<br><br>
 		<h1 class="mt-4">Level0 programme</h1>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 1 : </h5>
-			<img src="img/etape2.png" class="mt-4 om">
+			<img src="img/etape2.0.png" class="mt-4 om">
+			<br>
+			<img src="img/etape2.1.png" class="mt-4 om">
 		</div>
 
 		<div class="mt-5">
