@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Level00</title>
+	<title>Level03</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Level00</a>
+		<a class="navbar-brand" href="#">Level03</a>
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
         		<a class="nav-link" href="../../manuel.html">retour</a>
@@ -15,7 +15,7 @@
 		</ul>
 	</nav>
 	<div align="center">
-		<h1 class="mt-4">Level00</h1>
+		<h1 class="mt-4">Level03</h1>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 1 : </h5>
@@ -26,16 +26,58 @@
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 2 : </h5>
 			<p class="lead">on lance gdb</p>
-			<p class="lead">on convertit la ligne ou il y a cmp : 0x080484e7 <+83>:	cmp    $0x149c,%eax</p>
-			<p class="lead">on a : 0x149c = 5276</p>
+			<p class="lead">on regarde ce que prend le printf (cest un int)</p>
 			<img src="img/etape2.png" class="mt-4 om">
 		</div>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 3 : </h5>
-			<p class="lead">on lance le programme</p>
-			<p class="lead">on met 5276 en mdp</p>
+			<p class="lead">on regarde la valeur de ce int</p>
+			<p class="lead">c'est 322424845</p>
 			<img src="img/etape3.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 4 : </h5>
+			<p class="lead">on voit que le programme decrypt une chaine pour trouver une autre</p>
+			<p class="lead">on cherche la chaine finale</p>
+			<img src="img/etape4.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 5 : </h5>
+			<p class="lead">on peut voir que le programme fait un xor</p>
+			<img src="img/etape5.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 6 : </h5>
+			<p class="lead">on cherche la chaine de depart</p>
+			<img src="img/etape6.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 7 : </h5>
+			<p class="lead">comme on a un xor on a : c_final = c_debutˆ(nb du debut - nb)</p>
+			<p class="lead">pour trouver le nb on prend hexa de Q : 0x51 et hexa de C : 0x43 et on fait le xor on trouve 0x12 </p>
+			<p class="lead">donc nb = p/d 0x12 = 18</p>
+			<img src="img/etape7.0.png" class="mt-4 om">
+			<br>
+			<img src="img/etape7.1.png" class="mt-4 om">
+			<br>
+			<img src="img/etape7.2.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 8 : </h5>
+			<p class="lead">on soustrait 322424845 et 18 ce qui nous donne 322424827</p>
+			<img src="img/etape8.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 9 : </h5>
+			<p class="lead">on lance le programme et on met 322424827 en mot de passe</p>
+			<img src="img/etape9.png" class="mt-4 om">
 		</div>
 		<br><br>
 		<h1 class="mt-4">Level0 programme</h1>
