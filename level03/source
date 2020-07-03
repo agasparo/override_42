@@ -1,21 +1,51 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
 
-int		main() {
+int			main(void) {
+
 	int		password;
 
+	srand(time(NULL));
+
 	puts("***********************************");
-	puts("* 	     -Level00 -		  *");
+	puts("*\t\tlevel03\t\t**");
 	puts("***********************************");
 
-	printf("Password:\n");
+	printf("Password:");
 	scanf("%d", &password);
+	test(password, 322424845);
+	
+	return (0);
+}
 
-	if (password == 5276) {
-		puts("Authenticated!");
-		system("/bin/sh");
-		return (0);
+void decrypt(int str) {
+
+	int tmp;
+	int i;
+	char str[] = "Q}|u`sfg~sf{}|a3";
+
+	i = 0;
+	while (i < strlen(str)) {
+		str[i] = str ^ str[i];
+		i++;
 	}
-	puts("Invalid Password!");
-	return (1);
+	if (strncmp(str, "Congratulations!", 17) == 0) {
+		system("/bin/sh");
+	} else {
+		puts("\nInvalid Password");
+	}
+}
+
+void test(int i, int nb) {
+	int n1;
+
+	n1 = nb - i;
+	if (n1 <= 21) {
+ 		if ((n1 >= 1 && n1 <= 9) || (n1 >= 16 && n1 <= 21)) {
+			decrypt(n1);
+		}
+	}
+	decrypt(rand());
 }
