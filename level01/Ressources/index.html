@@ -19,43 +19,22 @@
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 1 : </h5>
-			<p class="lead">on lance la progammme</p>
+			<p class="lead">On desassamble le binaire et on calcule la taille du buffer, on obtien buffer = 96 (0x60) + 3 * (push soit 4) - 28 (0x1c)</p>
 			<img src="img/etape1.png" class="mt-4 om">
 		</div>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 2 : </h5>
 			<p class="lead">on lance gdb</p>
-			<p class="lead">on convertit la ligne ou il y a cmp : 0x080484e7 <+83>:	cmp    $0x149c,%eax</p>
-			<p class="lead">on a : 0x149c = 5276</p>
+			<p class="lead">On remarque que le ain fait appel a verify_user_name et qu'une comparaison y est fait avec 0x80486a8 on converti et on obtien le login dat_wil</p>
 			<img src="img/etape2.png" class="mt-4 om">
 		</div>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 3 : </h5>
-			<p class="lead">on lance le programme</p>
-			<p class="lead">on met 5276 en mdp</p>
-			<img src="img/etape3.png" class="mt-4 om">
-		</div>
-
-		<div class="mt-5">
-			<h5 class="mt-4">Etape 4 : </h5>
-			<p class="lead">on lance le programme</p>
-			<p class="lead">on met 5276 en mdp</p>
+			<p class="lead">on script la connection avec du python, on met le login puis on cherche le segfault pour inserer notre shellcode que l'on a stocké dans une variable d'environnement</p>
+			<p class="lead">puis on lance le programme et recupere le flag</p>
 			<img src="img/etape4.png" class="mt-4 om">
-		</div>
-		<br><br>
-		<h1 class="mt-4">Level0 programme</h1>
-
-		<div class="mt-5">
-			<h5 class="mt-4">Etape 1 : </h5>
-			<img src="img/etape1.png" class="mt-4 om">
-		</div>
-
-		<div class="mt-5">
-			<h5 class="mt-4">Etape 2 : </h5>
-			<img src="img/pr2.png" class="mt-4 om">
-		</div>
 		</div>
 	</div>
 	<br><br><br>
