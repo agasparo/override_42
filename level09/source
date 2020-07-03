@@ -1,21 +1,56 @@
-#include <stdio.h>
-#include <stdlib.h>
+struct s_message {
+    char message[140];
+    char username[40];
+    int len_message;
+};
 
-int		main() {
-	int		password;
+void set_msg(message *mess)
+{
+	char buffer[1024];
 
-	puts("***********************************");
-	puts("* 	     -Level00 -		  *");
-	puts("***********************************");
+	puts(">: Msg @Unix-Dude");
+	printf("Enter your username");
+	fgets(buffer, 1024, stdin);
+	strncpy(message->message, buffer, message->len_message);
+}
 
-	printf("Password:\n");
-	scanf("%d", &password);
+void set_username(message *mess)
+{
+	char buffer[128];
+	bzero(buffer, 1128);
+	puts(">: Enter your username");
+	fgets(buffer, 128, stdin);
+	int i = 0;
+	while (i <= 40 && buffer[i] != 0) {
+        message->username[i] = buffer[i];
+        i++;
+    }
+	printf(" %s", message->username);
+}
 
-	if (password == 5276) {
-		puts("Authenticated!");
-		system("/bin/sh");
-		return (0);
-	}
-	puts("Invalid Password!");
-	return (1);
+void handle_msg() {
+	message buffer;
+
+	memset(buffer.username, 0, 40);
+	buffer.i = 0x8c;
+
+	set_username(&buffer);
+	set_msg(&buffer);
+	puts(">: Msg sent !");
+}
+
+void secret_backdoor()
+{
+	char buffer[128];
+
+	fgets(buffer, 128, stdin);
+	system(buffer);
+}
+
+int main()
+{
+	puts("---------------------
+	\n|   ~Welcome to l33t-m$n ~    v1337        |
+	\n------------------\n");
+	handle_msg();
 }

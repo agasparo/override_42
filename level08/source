@@ -1,21 +1,44 @@
-#include <stdio.h>
-#include <stdlib.h>
+void log_wrapper(FILE *file, char *str1, char *str2)
+{
+	char buffer[264];
+    strcpy(buffer, info);
+    snprintf(&buffer[strlen(buffer)], 254 - strlen(buffer), name);
+    buffer[strcspn(buffer, "\n")] = 0;
+    fprintf(file, "LOG: %s\n", buffer);
+}
 
-int		main() {
-	int		password;
+int main(int ac, char **av)
+{
+	double d;
+	FILE *log;
+	FILE *file;
+	char	c;
+	char buffer[96];
 
-	puts("***********************************");
-	puts("* 	     -Level00 -		  *");
-	puts("***********************************");
-
-	printf("Password:\n");
-	scanf("%d", &password);
-
-	if (password == 5276) {
-		puts("Authenticated!");
-		system("/bin/sh");
-		return (0);
+	if (ac != 2)
+	{
+		printf("Usage: %s filename\n", *av);
 	}
-	puts("Invalid Password!");
-	return (1);
+	log = fopen("w", "./backups/.log");
+	if (!log) {
+		printf("ERROR: Failed to open %s\n", "./backups/.log");
+		exit(1);
+	}
+	log_wrapper(log, "Starting backup : ", av[1]);
+	file = fopen("r", av[1]);
+	if (!file) {
+		printf("ERROR: Failed to open %s\n", av[1]);
+		exit(1);
+	}
+	bzero(&buffer, 10);
+	buffer = "./backups/";
+	strncat(buffer, av[1], 89);
+	if (open(buffer, 193) < 0) {
+		printf("ERROR: Failed to open %s%s\n", "./backups/", av[1]);
+		exit(1);
+	}
+	while ((c = fgetc(file)) != -1)
+		write(1, &c, 1);
+	log_wrapper(log, "Ending backup : ", av[1]);
+	close(file);
 }
