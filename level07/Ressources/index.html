@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Level00</title>
+	<title>Level07</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Level00</a>
+		<a class="navbar-brand" href="#">Level07</a>
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
         		<a class="nav-link" href="../../manuel.html">retour</a>
@@ -15,7 +15,7 @@
 		</ul>
 	</nav>
 	<div align="center">
-		<h1 class="mt-4">Level00</h1>
+		<h1 class="mt-4">Level07</h1>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 1 : </h5>
@@ -25,18 +25,55 @@
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 2 : </h5>
-			<p class="lead">on lance gdb</p>
-			<p class="lead">on convertit la ligne ou il y a cmp : 0x080484e7 <+83>:	cmp    $0x149c,%eax</p>
-			<p class="lead">on a : 0x149c = 5276</p>
+			<p class="lead">on recupere les adresses du tableau</p>
+			<p class="lead">0xffffa910 // adresse qui qui point sur ladresse du tab<br>0xffffa934 // adresse du tableau</p>
 			<img src="img/etape2.png" class="mt-4 om">
 		</div>
 
 		<div class="mt-5">
 			<h5 class="mt-4">Etape 3 : </h5>
-			<p class="lead">on lance le programme</p>
-			<p class="lead">on met 5276 en mdp</p>
+			<p class="lead">on les soustraits pour avoir le premier index et on trouve -9</p>
+			<p class="lead">0xffffa910 - 0xffffa934 <=> 4294945040 - 4294945076 = -36</p>
+			<p class="lead">tableau de int donc :<br>-36 / 4 = -9</p>
 			<img src="img/etape3.png" class="mt-4 om">
 		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 4 : </h5>
+			<p class="lead">on recupere l'eip et on calcul son index</p>
+			<p class="lead">eip = 0xffffaafc - 0xffffa934 = 0x1C8 = 456</p>
+			<p class="lead">tableau de int donc :<br>456 / 4 = 114</p>
+			<p class="lead">index de l'eip = 114</p>
+			<img src="img/etape4.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 5 : </h5>
+			<p class="lead">on fait un ret2libc</p>
+			<p class="lead">on recupere l'adresse de sytem</p>
+			<p class="lead">addr system : 0xf7e6aed0 qui en decimal donne : 4159090384</p>
+			<p class="lead">mais l'index de system sera 144 qui est proteger (%3) donc on vas overflow le int</p>
+			<p class="lead">uint_max / 4 + 114 = 4294967296 / 4 + 114 = 1073741938</p>
+			<p class="lead">on test si il est modulo 3</p>
+			<p class="lead">1073741938 % 3 = 1 donc non proteger</p>
+			<img src="img/etape5.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 6 : </h5>
+			<p class="lead">on lrecupere l'adresse de /bin/sh</p>
+			<p class="lead">addr de /bin/sh : 0xf7f897ec</p>
+			<p class="lead">on le convertit en decimal : 4160264172</p>
+			<p class="lead">index : 116 car 115 proteger</p>
+			<img src="img/etape6.png" class="mt-4 om">
+		</div>
+
+		<div class="mt-5">
+			<h5 class="mt-4">Etape 7 : </h5>
+			<p class="lead">on lance la progammme avec nos infos</p>
+			<img src="img/etape7.png" class="mt-4 om">
+		</div>
+
 		<br><br>
 		<h1 class="mt-4">Level0 programme</h1>
 
